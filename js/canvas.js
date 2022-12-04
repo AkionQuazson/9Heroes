@@ -262,9 +262,9 @@ dom.inputs.endTurn.addEventListener('click', (e) => {
 	}
 })
 
-const canvasRect = canvas.getBoundingClientRect();
 
 window.addEventListener('mousemove', (e) => {
+	const canvasRect = canvas.getBoundingClientRect();
 	mouse.x = e.clientX - canvasRect.left;
 	mouse.y = e.clientY - canvasRect.top;
     selectedTile = null;
