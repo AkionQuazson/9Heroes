@@ -1,17 +1,17 @@
 let heroes = [];
 
-const loginStipulation = (usernameBox, passwordBox, passwordBox2 = {value: passwordBox.value}) => {
+const loginStipulation = () => {
     //When the user has clicked the login button, 
     //check if username has at least 3 characters
-    if (usernameBox.value.length < 3) {
+    if (dom.inputs.username.value.length < 3) {
         return false;
     }
     //check if password has at least 5 characters
-    if (passwordBox.value.length < 5) {
+    if (dom.inputs.password.value.length < 5) {
         return false;
     }
 
-    if (passwordBox2.value !== passwordBox.value) {
+    if (!dom.inputs.password2.classList.includes('hidden') && dom.inputs.password2.value !== passwordBox.value) {
         return false;
     }
     return true;
@@ -19,6 +19,7 @@ const loginStipulation = (usernameBox, passwordBox, passwordBox2 = {value: passw
 
 const attemptLogin = (e) => {
     //run loginStipulation
+    console.log(loginStipulation());
     //send a request serverside
     //on success, advance to game
     //on failure, update message box to say
@@ -224,4 +225,3 @@ const runGame = (loadState = '') => {
 dom.inputs.switchToRegister.addEventListener('click', switchLoginOrRegister);
 dom.inputs.guest.addEventListener('click', startGuest);
 
-runGame();
