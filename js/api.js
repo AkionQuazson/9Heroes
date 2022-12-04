@@ -11,7 +11,7 @@ const loginStipulation = () => {
         return false;
     }
 
-    if (!dom.inputs.password2.classList.contains('hidden') && dom.inputs.password2.value !== passwordBox.value) {
+    if (!dom.inputs.password2.classList.contains('hidden') && dom.inputs.password2.value !== dom.inputs.password.value) {
         return false;
     }
     return true;
