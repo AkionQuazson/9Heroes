@@ -27,8 +27,8 @@ class PlacableSpace {
 }
 class Hero {
 	constructor(hero) {
-		const {type, img, atk, range, damage, luck, experience, position} = hero;
-		Object.assign(this, {type, atk, range, damage, luck, experience, position});
+		const {type, img, range, damage, luck, experience, position} = hero;
+		Object.assign(this, {type, range, damage, luck, experience, position});
         this.img = new Image(64, 64);
         this.img.src = img;
         this.attacked = false;
@@ -78,14 +78,15 @@ class Hero {
             }
         }
         if (this.targets.length > 0 && !this.attacked) {
-            this.atk(this.targets, this.luck, this.damage);
+            const atk = atks[this.type];
+			atk(this.targets, this.luck, this.damage);
             this.experience++;
             this.attacked = true;
         }
 	}
 
 	appendList () {
-        const heroIcon = document.createElement('div');
+		const heroIcon = document.createElement('div');
 		heroIcon.setAttribute('id', this.type);
 		heroIcon.classList.add('heroIcon');
 		

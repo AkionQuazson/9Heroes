@@ -46,6 +46,7 @@ const spawnEnemies = (wave) => {
 }
 
 const renderHeroes = () => {
+	console.log(heroes);
 	dom.fields.heroList.innerHTML = '<p class="vertical">HEROES</p>'
 	heroes.forEach((hero) => {
 		if (!hero.position) {

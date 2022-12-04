@@ -1,3 +1,143 @@
+const atks = {
+    Archer:(targets, luck, damage) => {
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.health -= damage;
+    },
+    Assassin:(targets, luck, damage) => {
+        let atkDmg = damage;
+        if (luckRoll(luck)) {
+            atkDmg *= 2;
+        }
+        let target = targets[0];
+        target.health -= atkDmg;
+    },
+    Barbarian:(targets, luck, damage) => {
+        if (luckRoll(luck)){
+            damage += 3;
+        }
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.health -= damage;
+    },
+    Cleric:(targets, luck, damage) => {
+        if (baseHealth < 20 && luckRoll(luck)) {
+            baseHealth++;
+        }
+        
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.health -= damage;
+    },
+    Cryomancer:(targets, luck, damage) => {
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.stunned = true;
+        if (luckRoll(luck)){
+            target.health -= damage;
+        }
+    },
+    Geomancer:(targets, luck, damage) => {
+        if (luckRoll(luck)){
+            targets.forEach((enemy) => {
+                enemy.health -= damage;
+            })
+        }
+    },
+    Knight:(targets, luck, damage) => {
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.health -= damage;
+        if (luckRoll(luck)) {
+            target.stunned = true;
+        }
+    },
+    Monk:(targets, luck, damage) => {
+        let target = targets[0];
+        do {
+            for (let i = 1; i < targets.length; i++) {
+                if (targets[i].priority < target.priority) {
+                    target = targets[i];
+                }
+            }
+            target.health -= damage;
+        } while (luckRoll(luck) && target.health > 0);
+    },
+    Paladin:(targets, luck, damage) => {
+        const target = targets[0];
+        if (
+            target.img.includes('lich') ||
+            target.img.includes('skeleton') ||
+            target.img.includes('zombie') ||
+            target.img.includes('demon') 
+        ) {
+            damage *= 2;
+        }
+        target.health -= damage;
+    },
+    Pyromancer:(targets, luck, damage) => {
+        if (luckRoll(luck)){
+            damage += 1;
+        }
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.health -= damage;
+        
+    },
+    Rogue:(targets, luck, damage) => {
+        let target = targets[0];
+        for (let i = 1; i < targets.length; i++) {
+            if (targets[i].priority < target.priority) {
+                target = targets[i];
+            }
+        }
+        target.health -= damage;
+        if(luckRoll(luck)) {
+            target.pulled = true;
+        }
+    },
+    Spellblade:(targets, luck, damage) => {
+        if (luckRoll(luck)){
+            targets.forEach((enemy) => {
+                enemy.health -= damage;
+            })
+        }
+        else {
+            let target = targets[0];
+            for (let i = 1; i < targets.length; i++) {
+                if (targets[i].priority < target.priority) {
+                    target = targets[i];
+                }
+            }
+            target.health -= damage;
+        }
+    }
+}
+
 let heroes = [];
 
 const loginStipulation = (usernameBox, passwordBox, passwordBox2 = {value: passwordBox.value}) => {
