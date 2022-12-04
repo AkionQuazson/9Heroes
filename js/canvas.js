@@ -1,5 +1,3 @@
-import { saveStatus } from "../server/controller.mjs";
-
 const canvas = dom.fields.mapSpace
 const c = canvas.getContext('2d');
 
@@ -63,7 +61,7 @@ const animate = () => {
 	dom.fields.statsDisplay.innerHTML = `<p>Health: ${baseHealth}</p><p> Actions: ${actions}</p>`
 	if (activeEnemies.length === 0) {
 		wave++;
-		saveStatus();
+		saveData();
 		spawnEnemies(wave);
 	}
 	if (turn === 'enemy') {
