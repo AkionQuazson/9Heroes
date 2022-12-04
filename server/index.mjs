@@ -1,7 +1,6 @@
 #!/usr/bin/nodejs
 
-import express from "express";
-import cors from "cors";
+import In from '/etc/node/In.mjs';
 import { 
   login, 
   register, 
@@ -10,24 +9,27 @@ import {
   saveStatus
 } from './controller.mjs';
 
-const app = express();
+console.log('content-type: text/html\n\n')
 
-app.use(cors());
+// const app = express();
 
-app.use(express.json());
+// app.use(cors());
 
-app.get("/api/login", login);
+// app.use(express.json());
 
-app.post("/api/register", register);
+// app.get("/api/login", login);
 
-app.get("/api/heroes", getHeroes);
+// app.post("/api/register", register);
 
-app.get("/api/monsters", getMonsters);
+// app.get("/api/heroes", getHeroes);
 
-app.get("/api/save", saveStatus);
+// app.get("/api/monsters", getMonsters);
 
-const port = 3000;
+// app.get("/api/save", saveStatus);
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-});
+// const port = 3000;
+
+// app.listen(port, () => {
+//   console.log(`Listening on port ${port}`)
+// });
+
