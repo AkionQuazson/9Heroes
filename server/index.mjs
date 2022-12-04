@@ -15,15 +15,21 @@ const route = process.env.QUERY_STRING || process.argv[2];
 
 let input = {};
 const main = async () => {
-  // app.get("/api/login", login);
+  if (route === '/login') {
+    process.stdout.write(JSON.stringify(await login()));
+  }
   
-  // app.post("/api/register", register);
-  
-  if (route === '/heroes'){
+  if (route === '/register') {
+    process.stdout.write(JSON.stringify(await register()));
+  }
+
+  if (route === '/heroes') {
     process.stdout.write(JSON.stringify(await getHeroes()));
   }
   
-  // app.get("/api/save", saveStatus);
+  if (route === '/save') {
+    process.stdout.write(JSON.stringify(await saveStatus()));
+  }
   
 }
 

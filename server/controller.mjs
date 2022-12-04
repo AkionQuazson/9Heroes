@@ -17,12 +17,18 @@ const allHeroes = [
 ]
 
 export const login = async () => {
-        const {user} = req.body;
+        // const {user} = req.body;
         const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
     }
 export const register = async () => {
         //Check if username is already used.
+        // get user from body
+        const user = {username:'asdf'}
+        const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`
         //If username not used, add user 
+        if (profile.includes(user.username)) {
+            
+        }
     }
 export const getHeroes = async () => {
         let heroes = [];
