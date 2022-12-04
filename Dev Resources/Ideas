@@ -1,0 +1,8 @@
+Geomancer can remove rocks within range
+- pass position (might have to for cleric, bard, and seer)
+- add "empty-space" sprite
+- add list of "rock-smash"able spaces
+Lumberjack 
+- new tower like ^, but targets trees, and 
+Mover
+- not official name. but moves around randomly on Atk().
