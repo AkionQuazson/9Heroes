@@ -50,7 +50,7 @@ const switchLoginOrRegister = (e) => {
 }
 
 const getHeroes = () => {
-    axios.get('https://homelightarchive.com/games/9Heroes/server/?/heroes')
+    axios.post('https://homelightarchive.com/games/9Heroes/server/?/heroes')
         .then((res) => {
             heroes = res.data;
             

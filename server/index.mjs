@@ -13,30 +13,18 @@ console.log('Access-Control-Allow-Origin: https://homelightarchive.com\n');
 
 const route = process.env.QUERY_STRING || process.argv[2];
 
-// console.log(route);
-
-// const app = express();
-
-// app.use(cors());
-
-// app.use(express.json());
-
-// app.get("/api/login", login);
-
-// app.post("/api/register", register);
-
-// app.get("/api/heroes", getHeroes);
-if (route === '/heroes'){
-  const heroes = await getHeroes()
-  process.stdout.write(JSON.stringify(heroes));
+let input = {};
+const main = async () => {
+  // app.get("/api/login", login);
+  
+  // app.post("/api/register", register);
+  
+  if (route === '/heroes'){
+    process.stdout.write(JSON.stringify(await getHeroes()));
+  }
+  
+  // app.get("/api/save", saveStatus);
+  
 }
-// app.get("/api/monsters", getMonsters);
 
-// app.get("/api/save", saveStatus);
-
-// const port = 3000;
-
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`)
-// });
-
+await In(async (userInput) => {input = userInput; await main();})
