@@ -217,7 +217,6 @@ const saveData = (data) => {
 
 const runGame = (loadState = '') => {
     getHeroes();
-    getMonsters();
     //switch screen to playfield
     dom.screens.login.classList.add('hidden');
     dom.screens.playfield.classList.remove('hidden');
@@ -226,4 +225,6 @@ const runGame = (loadState = '') => {
 
 dom.inputs.switchToRegister.addEventListener('click', switchLoginOrRegister);
 dom.inputs.guest.addEventListener('click', startGuest);
+dom.fields.login.onsubmit(attemptLogin);
+
 
