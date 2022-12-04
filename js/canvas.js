@@ -46,7 +46,6 @@ const spawnEnemies = (wave) => {
 }
 
 const renderHeroes = () => {
-	console.log(heroes);
 	dom.fields.heroList.innerHTML = '<p class="vertical">HEROES</p>'
 	heroes.forEach((hero) => {
 		if (!hero.position) {
@@ -224,7 +223,6 @@ canvas.addEventListener('click', (e) => {
 		renderHeroes();
 	}
 	else if (selectedTile === null) {
-		console.log('nothing selected')
 		selectedHero = null;
 		renderHeroes();
 	}

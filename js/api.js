@@ -70,23 +70,6 @@ const getHeroes = () => {
         })
         .catch(() => {
             heroes = [
-                {type:'Archer', img:'img/heroes/archer.png', range:3, damage:2, luck:0, experience:0, atk:(targets, luck, damage) => {
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.health -= damage;
-                }},
-                {type:'Assassin', img:'img/heroes/assassin.png', range:2, damage:2, luck:10, experience:0, atk:(targets, luck, damage) => {
-                    let atkDmg = damage;
-                    if (luckRoll(luck)) {
-                        atkDmg *= 2;
-                    }
-                    let target = targets[0];
-                    target.health -= atkDmg;
-                }},
                 {type:'Barbarian', img:'img/heroes/barbarian.png', range:1, damage:3, luck:15, experience:0, atk:(targets, luck, damage) => {
                         if (luckRoll(luck)){
                         damage += 3;
@@ -129,18 +112,6 @@ const getHeroes = () => {
                         targets.forEach((enemy) => {
                             enemy.health -= damage;
                         })
-                    }
-                }},
-                {type:'Knight', img:'img/heroes/knight.png', range:1, damage:3, luck:25, experience:0, atk:(targets, luck, damage) => {
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.health -= damage;
-                    if (luckRoll(luck)) {
-                        target.stunned = true;
                     }
                 }},
                 {type:'Monk', img:'img/heroes/monk.png', range:1, damage:1, luck:45, experience:0, atk:(targets, luck, damage) => {
