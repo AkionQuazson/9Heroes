@@ -18,6 +18,7 @@ const loginStipulation = () => {
 }
 
 const attemptLogin = (e) => {
+    e.preventDefault();
     //run loginStipulation
     console.log(loginStipulation());
     //send a request serverside
@@ -28,6 +29,7 @@ const attemptLogin = (e) => {
 }
 
 const attemptRegister = (e) => {
+    e.preventDefault();
     //run loginStipulation
     //send a serverside request
     //on success, advance to game
@@ -44,8 +46,8 @@ const startGuest = (e) => {
 
 const switchLoginOrRegister = (e) => {
     e.preventDefault();
-  //Make 2nd password field appear
-  console.log('switch')
+	//Make 2nd password field appear
+	console.log('switch')
     dom.inputs.password2.classList.toggle('hidden');
     //Change Login and Register buttons to be their inverse
 }
@@ -209,8 +211,8 @@ const getHeroes = () => {
         });
 }
 
-const getMonsters = () => {
-    //axios.get monsters
+const saveData = (data) => {
+    //post data to server
 }
 
 const runGame = (loadState = '') => {
