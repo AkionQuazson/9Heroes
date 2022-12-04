@@ -225,6 +225,6 @@ const runGame = (loadState = '') => {
 
 dom.inputs.switchToRegister.addEventListener('click', switchLoginOrRegister);
 dom.inputs.guest.addEventListener('click', startGuest);
-dom.fields.login.addEventListener('submit', attemptLogin);
+dom.screens.login.addEventListener('submit', attemptLogin);
 
 
