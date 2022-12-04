@@ -277,5 +277,3 @@ window.addEventListener('mousemove', (e) => {
         }
     }
 })
-
-renderHeroes();

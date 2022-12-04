@@ -56,15 +56,6 @@ const allEnemies = {
 	zombie: {img:'img/enemies/zombie.png', damage:1, speed:1, health:18, priority:3, stunned:true, rating:2}
 }
 
-while (heroes.length > 9) {
-	const rand = Math.floor(Math.random() * heroes.length);
-	heroes.splice(rand, 1);
-}
-
-heroes.forEach((hero, i) => {
-	heroes[i] = new Hero(hero);
-});
-
 let placementTiles = [];
 towerSpaces.forEach((row, y) => {
 	row.forEach((symbol, x) => {

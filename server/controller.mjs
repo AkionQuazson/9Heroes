@@ -144,28 +144,24 @@ const allHeroes = [
 export const login = async (req, res) => {
         const {user} = req.body;
         const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
-        res.sendStatus(200);
     }
 export const register = async (req, res) => {
         //Check if username is already used.
         //If username not used, add user 
-        res.sendStatus(200);
     }
 export const getHeroes = async (req, res) => {
-        let heroes = allHeroes;
+        let heroes = [];
         //if logged in, and has previous game
         //send previous heroes, else
-        while (heroes.length > 9) {
-            const rand = Math.floor(Math.random() * heroes.length);
-            heroes.splice(rand, 1);
+        while (heroes.length < 9) {
+            const rand = Math.floor(Math.random() * allHeroes.length);
+            heroes.push(...allHeroes.splice(rand, 1));
         }
+        heroes.forEach((hero) => {
+            delete hero.atk;
+        });
         //return selected heroes
-        res.status(200).send(heroes);
-
-    }
-export const getMonsters = (req, res) => {
-        //return Monsters options
-        res.status(200).send(monsters);
+        return heroes;
 
     }
 export const saveStatus = async (req, res) => {

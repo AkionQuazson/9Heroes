@@ -5,11 +5,15 @@ import {
   login, 
   register, 
   getHeroes, 
-  getMonsters,
   saveStatus
 } from './controller.mjs';
 
-console.log('content-type: text/html\n\n')
+console.log('content-type: application/json');
+console.log('Access-Control-Allow-Origin: https://homelightarchive.com\n');
+
+const route = process.env.QUERY_STRING || process.argv[2];
+
+// console.log(route);
 
 // const app = express();
 
@@ -22,7 +26,10 @@ console.log('content-type: text/html\n\n')
 // app.post("/api/register", register);
 
 // app.get("/api/heroes", getHeroes);
-
+if (route === '/heroes'){
+  const heroes = await getHeroes()
+  process.stdout.write(JSON.stringify(heroes));
+}
 // app.get("/api/monsters", getMonsters);
 
 // app.get("/api/save", saveStatus);

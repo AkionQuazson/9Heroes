@@ -50,10 +50,20 @@ const switchLoginOrRegister = (e) => {
 }
 
 const getHeroes = () => {
-    axios.get('https://homelightarchive.com/games/9Heroes/server/?/api/heroes')
+    axios.get('https://homelightarchive.com/games/9Heroes/server/?/heroes')
         .then((res) => {
             heroes = res.data;
-            return heroes;
+            
+            while (heroes.length > 9) {
+                const rand = Math.floor(Math.random() * heroes.length);
+                heroes.splice(rand, 1);
+            }
+            
+            heroes.forEach((hero, i) => {
+                heroes[i] = new Hero(hero);
+            });
+
+            renderHeroes();
         })
         .catch(() => {
             heroes = [
