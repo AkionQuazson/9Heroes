@@ -1,3 +1,4 @@
+let user = {};
 let heroes = [];
 
 const loginStipulation = () => {
@@ -46,10 +47,18 @@ const startGuest = (e) => {
 
 const switchLoginOrRegister = (e) => {
     e.preventDefault();
-	//Make 2nd password field appear
-	console.log('switch')
     dom.inputs.password2.classList.toggle('hidden');
-    //Change Login and Register buttons to be their inverse
+
+	if (dom.inputs.password2.classList.contains('hidden')){
+		dom.fields.screens.removeEventListener('submit', attemptRegister);
+		dom.fields.screens.addEventListener('submit', attemptLogin);
+		dom.inputs.switchToRegister.innerText = 'Register';
+	}
+	else {
+		dom.fields.screens.removeEventListener('submit', attemptLogin);
+		dom.fields.screens.addEventListener('submit', attemptRegister);
+		dom.inputs.switchToRegister.innerText = 'Login';
+	}
 }
 
 const getHeroes = () => {
@@ -186,7 +195,7 @@ const saveData = (data) => {
     //post data to server
 }
 
-const runGame = (loadState = '') => {
+const runGame = () => {
     getHeroes();
     //switch screen to playfield
     dom.screens.login.classList.add('hidden');
