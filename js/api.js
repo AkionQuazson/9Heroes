@@ -50,13 +50,13 @@ const switchLoginOrRegister = (e) => {
     dom.inputs.password2.classList.toggle('hidden');
 
 	if (dom.inputs.password2.classList.contains('hidden')){
-		dom.fields.screens.removeEventListener('submit', attemptRegister);
-		dom.fields.screens.addEventListener('submit', attemptLogin);
+		dom.screens.login.removeEventListener('submit', attemptRegister);
+		dom.screens.login.addEventListener('submit', attemptLogin);
 		dom.inputs.switchToRegister.innerText = 'Register';
 	}
 	else {
-		dom.fields.screens.removeEventListener('submit', attemptLogin);
-		dom.fields.screens.addEventListener('submit', attemptRegister);
+		dom.screens.login.removeEventListener('submit', attemptLogin);
+		dom.screens.login.addEventListener('submit', attemptRegister);
 		dom.inputs.switchToRegister.innerText = 'Login';
 	}
 }
