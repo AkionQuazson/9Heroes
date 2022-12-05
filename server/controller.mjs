@@ -18,32 +18,41 @@ const allHeroes = [
 
 export const login = async () => {
         // const {user} = req.body;
-        const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+        // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+        //if profile.length === 0, return {dne: true}
+        //else if password(hashed) !== profile.password, return {dne: true}
+        //else return {dne: false}
     }
 export const register = async () => {
-        //Check if username is already used.
+        //const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+        //if username is already used.
         // get user from body
-        const user = {username:'asdf'}
-        const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`
+        // const user = {username:'asdf'}
+        // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
         //If username not used, add user 
-        if (profile.includes(user.username)) {
-            
-        }
+        // if (profile.includes(user.username)) {
+
+        // }
     }
 export const getHeroes = async () => {
         let heroes = [];
         //if logged in, and has previous game
-        //send previous heroes, else
+        // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+        // const game = await db`SELECT * FROM games WHERE player_id = ${profile.id}`;
+        // if game, load game.heroes, else run \/
         while (heroes.length < 9) {
             const rand = Math.floor(Math.random() * allHeroes.length);
             heroes.push(...allHeroes.splice(rand, 1));
         }
+
         //return selected heroes
         return heroes;
-
     }
 export const saveStatus = async () => {
         //store gamestate
-        // await db``;
+        // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+        // const game = await db`SELECT * FROM gamestates WHERE player_id = ${profile.id}`;
+        // if game, await db`DELETE * FROM gamestates WHERE player_id = ${profile.id}`;
+        // then await db`INSERT (game) INTO gamestates VALUES (${data.gamestate})`;
+        return;
     }
-    

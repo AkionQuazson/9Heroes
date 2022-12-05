@@ -1,4 +1,6 @@
-let user = {};
+import axios from "axios";
+
+let user;
 let heroes = [];
 
 const loginStipulation = () => {
@@ -20,9 +22,24 @@ const loginStipulation = () => {
 
 const attemptLogin = (e) => {
     e.preventDefault();
-    //run loginStipulation
-    console.log(loginStipulation());
+    if (!loginStipulation()) {
+		alert('Username or password too short.');
+		return;
+	}
     //send a request serverside
+	const data = {
+		username: dom.inputs.username.value,
+		password: dom.inputs.password.value
+	}
+	axios.post('https://homelightarchive.com/games/9Heroes/server/?/login', data)
+	.then((res) => {
+		if (!res.data.dne) {
+			user = data.username;
+			runGame();
+			return;
+		}
+	})
+	alert('Error logging in. Check your credentials or create a new account.');
     //on success, advance to game
     //on failure, update message box to say
     //error logging in
@@ -31,12 +48,24 @@ const attemptLogin = (e) => {
 
 const attemptRegister = (e) => {
     e.preventDefault();
-    //run loginStipulation
-    //send a serverside request
-    //on success, advance to game
-    //on failure, update message box to say
-        //error creating account
-        //username exists. pick another
+    if (!loginStipulation()) {
+		alert('Username or password too short, or passwords do not match.');
+		return;
+	}
+
+	const data = {
+		username: dom.inputs.username.value,
+		password: dom.inputs.password.value
+	}
+	axios.post('https://homelightarchive.com/games/9Heroes/server/?/register', data)
+	.then((res) => {
+		if (res.data.dne) {
+			user = data.username;
+			runGame();
+			return;
+		}
+	})
+	alert('Error creating account. Check your credentials or create a new account.');
 }
 
 const startGuest = (e) => {
@@ -64,7 +93,7 @@ const switchLoginOrRegister = (e) => {
 }
 
 const getHeroes = () => {
-    axios.post('https://homelightarchive.com/games/9Heroes/server/?/heroes')
+    axios.post('https://homelightarchive.com/games/9Heroes/server/?/heroes', {user: user})
         .then((res) => {
             heroes = res.data;
             
@@ -81,120 +110,23 @@ const getHeroes = () => {
         })
         .catch(() => {
             heroes = [
-                {type:'Barbarian', img:'img/heroes/barbarian.png', range:1, damage:3, luck:15, experience:0, atk:(targets, luck, damage) => {
-                        if (luckRoll(luck)){
-                        damage += 3;
-                    }
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.health -= damage;
-                }},
-                {type:'Cleric', img:'img/heroes/cleric.png', range:2, damage:1, luck:30, experience:0, atk:(targets, luck, damage) => {
-                    if (baseHealth < 20 && luckRoll(luck)) {
-                        baseHealth++;
-                    }
-                    
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.health -= damage;
-                }},
-                {type:'Cryomancer', img:'img/heroes/cryomancer.png', range:2, damage:1, luck:25, experience:0, atk:(targets, luck, damage) => {
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.stunned = true;
-                    if (luckRoll(luck)){
-                        target.health -= damage;
-                    }
-                }},
-                {type:'Geomancer', img:'img/heroes/geomancer.png', range:2, damage:1, luck:50, experience:0, atk:(targets, luck, damage) => {
-                    if (luckRoll(luck)){
-                        targets.forEach((enemy) => {
-                            enemy.health -= damage;
-                        })
-                    }
-                }},
-                {type:'Monk', img:'img/heroes/monk.png', range:1, damage:1, luck:45, experience:0, atk:(targets, luck, damage) => {
-                    let target = targets[0];
-                    do {
-                        for (let i = 1; i < targets.length; i++) {
-                            if (targets[i].priority < target.priority) {
-                                target = targets[i];
-                            }
-                        }
-                        target.health -= damage;
-                    } while (luckRoll(luck) && target.health > 0);
-                }},
-                {type:'Paladin', img:'img/heroes/paladin.png', range:1, damage:3, luck:0, experience:0, atk:(targets, luck, damage) => {
-                    const target = targets[0];
-                    if (
-                        target.img.includes('lich') ||
-                        target.img.includes('skeleton') ||
-                        target.img.includes('zombie') ||
-                        target.img.includes('demon') 
-                    ) {
-                        damage *= 2;
-                    }
-                    target.health -= damage;
-                }},
-                {type:'Pyromancer', img:'img/heroes/pyromancer.png', range:2, damage:2, luck:5, experience:0, atk:(targets, luck, damage) => {
-                    if (luckRoll(luck)){
-                        damage += 1;
-                    }
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.health -= damage;
-                    
-                }},
-                {type:'Rogue', img:'img/heroes/rogue.png', range:1, damage:1, luck:20, experience:0, atk:(targets, luck, damage) => {
-                    let target = targets[0];
-                    for (let i = 1; i < targets.length; i++) {
-                        if (targets[i].priority < target.priority) {
-                            target = targets[i];
-                        }
-                    }
-                    target.health -= damage;
-                    if(luckRoll(luck)) {
-                        target.pulled = true;
-                    }
-                }},
-                {type:'Spellblade', img:'img/heroes/spellblade.png', range:1, damage:3, luck:25, experience:0, atk:(targets, luck, damage) => {
-                    if (luckRoll(luck)){
-                        targets.forEach((enemy) => {
-                            enemy.health -= damage;
-                        })
-                    }
-                    else {
-                        let target = targets[0];
-                        for (let i = 1; i < targets.length; i++) {
-                            if (targets[i].priority < target.priority) {
-                                target = targets[i];
-                            }
-                        }
-                        target.health -= damage;
-                    }
-                }}
+                {type:'Barbarian', img:'img/heroes/barbarian.png', range:1, damage:3, luck:15, experience:0},
+                {type:'Cleric', img:'img/heroes/cleric.png', range:2, damage:1, luck:30, experience:0},
+                {type:'Cryomancer', img:'img/heroes/cryomancer.png', range:2, damage:1, luck:25, experience:0},
+                {type:'Geomancer', img:'img/heroes/geomancer.png', range:2, damage:1, luck:50, experience:0},
+                {type:'Monk', img:'img/heroes/monk.png', range:1, damage:1, luck:45, experience:0},
+                {type:'Paladin', img:'img/heroes/paladin.png', range:1, damage:3, luck:0, experience:0},
+                {type:'Pyromancer', img:'img/heroes/pyromancer.png', range:2, damage:2, luck:5, experience:0},
+                {type:'Rogue', img:'img/heroes/rogue.png', range:1, damage:1, luck:20, experience:0},
+                {type:'Spellblade', img:'img/heroes/spellblade.png', range:1, damage:3, luck:25, experience:0}
             ];
         });
 }
 
 const saveData = (data) => {
     //post data to server
+	const gamestate = json.stringify(data);
+	axios.post('https://homelightarchive.com/games/9Heroes/server/?/save', {user: user, gamestate: gamestate})
 }
 
 const runGame = () => {
