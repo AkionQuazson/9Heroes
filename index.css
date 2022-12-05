@@ -114,6 +114,16 @@ h1 {
 
 .btn {
     margin: 10px;
+    background-color: #0d7e8c;
+    border: 3px solid #033534;
+    color: #033534;
+}
+
+.secondary {
+    background: none;
+    color: #033534;
+    text-decoration: underline;
+    border: none;
 }
 
 .hidden {
