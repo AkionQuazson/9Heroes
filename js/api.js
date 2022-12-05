@@ -53,11 +53,13 @@ const switchLoginOrRegister = (e) => {
 		dom.screens.login.removeEventListener('submit', attemptRegister);
 		dom.screens.login.addEventListener('submit', attemptLogin);
 		dom.inputs.switchToRegister.innerText = 'Register';
+		dom.inputs.submit.innerText = 'Log in';
 	}
 	else {
 		dom.screens.login.removeEventListener('submit', attemptLogin);
 		dom.screens.login.addEventListener('submit', attemptRegister);
-		dom.inputs.switchToRegister.innerText = 'Login';
+		dom.inputs.switchToRegister.innerText = 'Log in';
+		dom.inputs.submit.innerText = 'Register';
 	}
 }
 
