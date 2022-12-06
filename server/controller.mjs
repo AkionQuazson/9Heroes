@@ -1,5 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import postgres from 'postgres';
+import * as fs from '/etc/node/SimpleFS.mjs';
 const db = postgres({database: 'spencer'});
 const salt = bcryptjs.genSaltSync(10);
 
@@ -24,6 +25,7 @@ export const test = async () => {
 }
 
 export const login = async (user) => {
+fs.writeFile('./Temp.txt', JSON.stringify(user));
     const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}'`;
     return profile;
 	if (profile.length === 0) {
