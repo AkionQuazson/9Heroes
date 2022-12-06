@@ -39,4 +39,4 @@ const main = async () => {
   
 }
 
-await In(async (userInput) => {input = userInput; await main();})
+await In(async (userInput) => {input = JSON.parse(userInput); await main();})
