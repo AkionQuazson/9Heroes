@@ -8,7 +8,10 @@ const loginStipulation = () => {
     if (dom.inputs.password.value.length < 5) {
         return false;
     }
-
+    if (dom.inputs.username.value.contains(';')) {
+        alert('Invalid character ";". Please use something else.');
+        return false;
+    }
     if (!dom.inputs.password2.classList.contains('hidden') && dom.inputs.password2.value !== dom.inputs.password.value) {
         return false;
     }
@@ -27,7 +30,7 @@ const attemptLogin = (e) => {
 	}
 	axios.post('https://homelightarchive.com/games/9Heroes/server/?/login', data)
 	.then((res) => {
-		console.log(res.data);
+		console.log(res);
         if (!res.data.dne) {
 			user = data.username;
 			runGame();
