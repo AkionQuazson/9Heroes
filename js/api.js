@@ -62,8 +62,13 @@ const attemptRegister = (e) => {
 			runGame();
 			return;
 		}
+        else {
+            alert('User already exists')
+        }
 	})
-	alert('Error creating account. Check your credentials or create a new account.');
+    .catch(() => {
+        alert('Error creating account. Please try again later or play as guest.');
+    })
 }
 
 const startGuest = (e) => {
