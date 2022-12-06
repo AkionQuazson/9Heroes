@@ -36,6 +36,7 @@ export const login = async (user) => {
 }
 export const register = async (user) => {
     const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}';`;
+    return profile;
     if (profile.length > 0) {
         return {dne: false}
     }
