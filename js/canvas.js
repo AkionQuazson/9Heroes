@@ -152,11 +152,6 @@ const animate = () => {
 
 		if (frames < 8) {
 			frames++;
-			for (let i = activeEnemies.length - 1; i >= 0; i--) {
-				if (activeEnemies[i].health <= 0) {
-					activeEnemies.splice(i, 1);
-				}
-			}
 		}
 		else{
 			turn = 'enemy';
@@ -192,6 +187,14 @@ const animate = () => {
 		}
 	}
 	c.drawImage(castle, 960, 448)
+	for (let i = activeEnemies.length - 1; i >= 0; i--) {
+		if (activeEnemies[i].health <= 0) {
+			activeEnemies.splice(i, 1);
+		}
+	}
+	if (baseHealth <= 0) {
+		
+	}
 }
 
 
