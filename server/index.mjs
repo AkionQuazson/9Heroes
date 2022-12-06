@@ -16,6 +16,7 @@ const route = process.env.QUERY_STRING || process.argv[2];
 
 let input = {};
 const main = async () => {
+  input = JSON.parse(input);
   console.log(input);
   if (route === '/test') {
     console.log(await test())
@@ -39,4 +40,4 @@ const main = async () => {
   
 }
 
-await In(async (userInput) => {input = JSON.parse(userInput); await main();})
+await In(async (userInput) => {input = userInput; await main();})
