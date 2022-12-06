@@ -19,24 +19,29 @@ const allHeroes = [
 ]
 
 export const login = async (user) => {
-    const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
-	return profile;
+    const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
+return profile;
 	if (profile.length === 0) {
         return {dne: true}
     }
-    //else if password(hashed) !== profile.password, return {dne: true}
-    //else return {dne: false}
+    else if (bcryptjs.compareSync(user.password, profile.password)) {
+        return {dne: false};
+    }
+    else {
+        return {dne: true}
+    }
 }
 export const register = async (user) => {
-    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
-    //if username is already used.
-    // get user from body
+    const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
+    if (profile.length > 0) {
+        return {dne: false}
+    }
     if (user) {
         const username = user.username;
         const password = bcryptjs.hashSync(user.password, salt);
-        const newUser = db`INSERT INTO profiles (username, password) VALUES (${username}, ${password})`;
+        const newUser = db`INSERT INTO profiles (username, password) VALUES (${username}, ${password});`;
     }
-    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
     //If username not used, add user 
     // if (profile.includes(user.username)) {
 
@@ -45,8 +50,9 @@ export const register = async (user) => {
 export const getHeroes = async (user) => {
     let heroes = [];
     //if logged in, and has previous game
-    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
-    // const game = await db`SELECT * FROM games WHERE player_id = ${profile.id}`;
+    
+    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
+    // const game = await db`SELECT * FROM games WHERE player_id = ${profile.id};`;
     // if game, load game.heroes, else run \/
     while (heroes.length < 9) {
         const rand = Math.floor(Math.random() * allHeroes.length);
