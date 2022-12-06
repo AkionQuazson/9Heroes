@@ -18,8 +18,10 @@ const allHeroes = [
 
 export const login = async (user) => {
     const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
-	return profile;
-	//if profile.length === 0, return {dne: true}
+	
+	if (profile.length === 0) {
+        return {dne: true}
+    }
     //else if password(hashed) !== profile.password, return {dne: true}
     //else return {dne: false}
 }

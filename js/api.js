@@ -28,7 +28,7 @@ const attemptLogin = (e) => {
 	axios.post('https://homelightarchive.com/games/9Heroes/server/?/login', data)
 	.then((res) => {
 		console.log(res.data);
-        if (res.data.dne) {
+        if (!res.data.dne) {
 			user = data.username;
 			runGame();
 		}
