@@ -28,10 +28,14 @@ export const login = async (user) => {
     //else return {dne: false}
 }
 export const register = async (user) => {
-    const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
+    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
     //if username is already used.
     // get user from body
-    // const user = {username:'asdf'}
+    if (user) {
+        const username = user.username;
+        const password = bcryptjs.hashSync(user.password, salt);
+        const newUser = db`INSERT INTO profiles (username, password) VALUES (${username}, ${password})`;
+    }
     // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
     //If username not used, add user 
     // if (profile.includes(user.username)) {
@@ -56,6 +60,6 @@ export const saveStatus = async (input) => {
     // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
     // const game = await db`SELECT * FROM gamestates WHERE player_id = ${profile.id}`;
     // if game, await db`DELETE * FROM gamestates WHERE player_id = ${profile.id}`;
-    // then await db`INSERT (game) INTO gamestates VALUES (${data.gamestate})`;
+    // then await db`INSERT INTO gamestates (gamestate) VALUES (${data.gamestate})`;
     return;
 }
