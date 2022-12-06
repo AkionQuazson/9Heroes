@@ -22,7 +22,7 @@ const main = async () => {
   }
   
   if (route === '/login') {
-    process.stdout.write(await login(input));
+    process.stdout.write(JSON.stringify(await login(input)));
   }
   
   if (route === '/register') {
