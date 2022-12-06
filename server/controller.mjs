@@ -19,12 +19,12 @@ const allHeroes = [
 ]
 
 export const test = async () => {
-    const profile = await db`SELECT * FROM profiles WHERE username = 'Akion';`
+    const profile = await db`SELECT * FROM profiles WHERE username = 'Akion'`;
     return profile;
 }
 
 export const login = async (user) => {
-    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}';`
+    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}'`;
     return profile;
 	if (profile.length === 0) {
         return {dne: true}
@@ -37,14 +37,14 @@ export const login = async (user) => {
     }
 }
 export const register = async (user) => {
-    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}';`;
+    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}'`;
     if (profile.length > 0) {
         return {dne: false}
     }
     else {
         const username = user.username;
         const password = bcryptjs.hashSync(user.password, salt);
-        const newUser = db`INSERT INTO profiles (username, password) VALUES ('${username}', '${password}');`;
+        const newUser = db`INSERT INTO profiles (username, password) VALUES ('${username}', '${password}')`;
         return newUser;
     }
 }
