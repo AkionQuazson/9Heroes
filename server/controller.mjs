@@ -19,12 +19,12 @@ const allHeroes = [
 ]
 
 export const test = async () => {
-    const apple = await db`SELECT * FROM profiles WHERE username = 'Akion';`
-    return apple;
+    const profile = await db`SELECT * FROM profiles WHERE username = 'Akion';`
+    return profile;
 }
 
 export const login = async (user) => {
-    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}';`;
+    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}';`
     return profile;
 	if (profile.length === 0) {
         return {dne: true}
