@@ -12,7 +12,7 @@ const loginStipulation = () => {
         alert('Invalid character ";". Please use something else.');
         return false;
     }
-    if (!dom.inputs.password2.classList.contains('hidden') && dom.inputs.password2.value !== dom.inputs.password.value) {
+    if (!dom.inputs.password2.classList.includes('hidden') && dom.inputs.password2.value !== dom.inputs.password.value) {
         return false;
     }
     return true;
