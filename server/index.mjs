@@ -16,7 +16,7 @@ const route = process.env.QUERY_STRING || process.argv[2];
 
 let input = {};
 const main = async () => {
-  console.log(input);
+  console.log(JSON.stringify(input));
   if (route === '/test') {
     console.log(await test())
   }
