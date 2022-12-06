@@ -20,7 +20,6 @@ const allHeroes = [
 
 export const login = async (user) => {
     const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
-return typeof(profile);
 	if (profile.length === 0) {
         return {dne: true}
     }
@@ -36,16 +35,12 @@ export const register = async (user) => {
     if (profile.length > 0) {
         return {dne: false}
     }
-    if (user) {
+    else {
         const username = user.username;
         const password = bcryptjs.hashSync(user.password, salt);
         const newUser = db`INSERT INTO profiles (username, password) VALUES (${username}, ${password});`;
+        return newUser;
     }
-    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
-    //If username not used, add user 
-    // if (profile.includes(user.username)) {
-
-    // }
 }
 export const getHeroes = async (user) => {
     let heroes = [];
