@@ -25,8 +25,9 @@ export const test = async () => {
 }
 
 export const login = async (user) => {
-fs.writeFile('./Temp.txt', JSON.stringify(user));
-    const profile = await db`SELECT * FROM profiles WHERE username = '${user.username}'`;
+fs.writeFile('./Input.txt', JSON.stringify(user));
+fs.writeFile('./Query.txt', `SELECT * FROM profiles WHERE username = '${user.username}'`);
+    const profile = await db`SELECT * FROM profiles WHERE username = 'Akion'`;
 	if (profile.length === 0) {
         return {dne: true}
     }
