@@ -16,7 +16,7 @@ const route = process.env.QUERY_STRING || process.argv[2];
 let input = {};
 const main = async () => {
   if (route === '/login') {
-    process.stdout.write(JSON.stringify(await login(input)));
+    console.log(JSON.stringify(await login(input)));
   }
   
   if (route === '/register') {
