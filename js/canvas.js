@@ -9,11 +9,12 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 
 const castle = new Image();
 castle.src = './img/castle.png'
+
 const map = new Image()
+map.src = './img/map1.png'
 map.onload = () => {
 	animate();
 }
-map.src = './img/map1.png'
 
 let selectedTile = null;
 let selectedHero = null;
@@ -56,6 +57,7 @@ const renderHeroes = () => {
 
 const animate = () => {
 	requestAnimationFrame(animate)
+	if (user === null) return;
     c.drawImage(map, 0, 0)
 	dom.fields.statsDisplay.innerHTML = `<p>Health: ${baseHealth}</p><p> Actions: ${actions}</p>`
 	if (activeEnemies.length === 0) {
