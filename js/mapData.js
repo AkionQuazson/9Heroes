@@ -37,23 +37,23 @@ const towerSpaces = [
 	[true, true, true, true, true, true, true, false, true, true, true, true, true, false, true, false, true, true, false, true]
 ]
 const allEnemies = {
-	bat: {img:'img/enemies/bat.png', damage:1, speed:3, health:10, priority:4, stunned:false, rating:5},
-	cavesnare: {img:'img/enemies/cavesnare.png', damage:1, speed:1, health:14, priority:3, stunned:true, rating:1},
-	clunker: {img:'img/enemies/clunker.png', damage:5, speed:1, health:20, priority:1, stunned:true, rating:4},
-	demon: {img:'img/enemies/demon.png', damage:4, speed:2, health:26, priority:4, stunned:false, rating:13},
-	dragon: {img:'img/enemies/dragon.png', damage:10, speed:4, health:30, priority:1, stunned:true, rating:40},
-	elemental: {img:'img/enemies/elemental.png', damage:1, speed:2, health:27, priority:3, stunned:true, rating:5},
-	faerie: {img:'img/enemies/faerie.png', damage:1, speed:3, health:4, priority:5, stunned:false, rating:6},
-	goblin: {img:'img/enemies/goblin.png', damage:1, speed:2, health:8, priority:3, stunned:false, rating:2},
-	lich: {img:'img/enemies/lich.png', damage:4, speed:2, health:12, priority:5, stunned:false, rating:12},
-	orc: {img:'img/enemies/orc.png', damage:2, speed:2, health:12, priority:2, stunned:false, rating:4},
-	rat: {img:'img/enemies/rat.png', damage:1, speed:3, health:6, priority:3, stunned:false, rating:3},
-	scorpion: {img:'img/enemies/scorpion.png', damage:3, speed:2, health:12, priority:2, stunned:false, rating:7},
-	skeleton: {img:'img/enemies/skeleton.png', damage:1, speed:2, health:6, priority:1, stunned:false, rating:1},
-	slime: {img:'img/enemies/slime.png', damage:0, speed:2, health:20, priority:1, stunned:false, rating:1},
-	smogwing: { img:'img/enemies/smogwing.png', damage:1, speed:3, health:6, priority:2, stunned:false, rating:3},
-	spider: {img:'img/enemies/spider.png', damage:1, speed:2, health:14, priority:3, stunned:false, rating:4},
-	zombie: {img:'img/enemies/zombie.png', damage:1, speed:1, health:18, priority:3, stunned:true, rating:2}
+	bat: {img:'img/enemies/bat.png', damage:1, speed:4, health:20, priority:4, stunned:false, rating:5},
+	cavesnare: {img:'img/enemies/cavesnare.png', damage:1, speed:1, health:30, priority:3, stunned:true, rating:1},
+	clunker: {img:'img/enemies/clunker.png', damage:5, speed:1, health:50, priority:1, stunned:true, rating:4},
+	demon: {img:'img/enemies/demon.png', damage:7, speed:3, health:70, priority:4, stunned:false, rating:13},
+	dragon: {img:'img/enemies/dragon.png', damage:15, speed:6, health:100, priority:1, stunned:true, rating:40},
+	elemental: {img:'img/enemies/elemental.png', damage:2, speed:3, health:50, priority:3, stunned:true, rating:5},
+	faerie: {img:'img/enemies/faerie.png', damage:1, speed:5, health:12, priority:5, stunned:false, rating:6},
+	goblin: {img:'img/enemies/goblin.png', damage:2, speed:3, health:25, priority:3, stunned:false, rating:2},
+	lich: {img:'img/enemies/lich.png', damage:6, speed:2, health:35, priority:5, stunned:false, rating:12},
+	orc: {img:'img/enemies/orc.png', damage:3, speed:3, health:35, priority:2, stunned:false, rating:4},
+	rat: {img:'img/enemies/rat.png', damage:2, speed:4, health:20, priority:3, stunned:false, rating:3},
+	scorpion: {img:'img/enemies/scorpion.png', damage:3, speed:3, health:35, priority:2, stunned:false, rating:7},
+	skeleton: {img:'img/enemies/skeleton.png', damage:1, speed:3, health:12, priority:1, stunned:false, rating:1},
+	slime: {img:'img/enemies/slime.png', damage:0, speed:3, health:40, priority:1, stunned:false, rating:1},
+	smogwing: { img:'img/enemies/smogwing.png', damage:2, speed:3, health:15, priority:4, stunned:false, rating:3},
+	spider: {img:'img/enemies/spider.png', damage:2, speed:3, health:25, priority:3, stunned:false, rating:4},
+	zombie: {img:'img/enemies/zombie.png', damage:1, speed:2, health:55, priority:3, stunned:true, rating:2}
 }
 
 const atks = {
