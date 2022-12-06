@@ -60,7 +60,7 @@ const animate = () => {
 	dom.fields.statsDisplay.innerHTML = `<p>Health: ${baseHealth}</p><p> Actions: ${actions}</p>`
 	if (activeEnemies.length === 0) {
 		wave++;
-		saveData();
+		// saveData({heroes, wave, user});
 		spawnEnemies(wave);
 	}
 	if (turn === 'enemy') {
