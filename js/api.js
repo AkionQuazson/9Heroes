@@ -1,15 +1,10 @@
-const axios = require('axios');
-
 let user;
 let heroes = [];
 
 const loginStipulation = () => {
-    //When the user has clicked the login button, 
-    //check if username has at least 3 characters
     if (dom.inputs.username.value.length < 3) {
         return false;
     }
-    //check if password has at least 5 characters
     if (dom.inputs.password.value.length < 5) {
         return false;
     }
@@ -26,7 +21,6 @@ const attemptLogin = (e) => {
 		alert('Username or password too short.');
 		return;
 	}
-    //send a request serverside
 	const data = {
 		username: dom.inputs.username.value,
 		password: dom.inputs.password.value
