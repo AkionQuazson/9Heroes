@@ -16,19 +16,19 @@ const route = process.env.QUERY_STRING || process.argv[2];
 let input = {};
 const main = async () => {
   if (route === '/login') {
-    process.stdout.write(JSON.stringify(await login()));
+    process.stdout.write(JSON.stringify(await login(input)));
   }
   
   if (route === '/register') {
-    process.stdout.write(JSON.stringify(await register()));
+    process.stdout.write(JSON.stringify(await register(input)));
   }
 
   if (route === '/heroes') {
-    process.stdout.write(JSON.stringify(await getHeroes()));
+    process.stdout.write(JSON.stringify(await getHeroes(input)));
   }
   
   if (route === '/save') {
-    process.stdout.write(JSON.stringify(await saveStatus()));
+    process.stdout.write(JSON.stringify(await saveStatus(input)));
   }
   
 }
