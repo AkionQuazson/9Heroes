@@ -30,14 +30,14 @@ const attemptLogin = (e) => {
 		if (!res.data.dne) {
 			user = data.username;
 			runGame();
-			return;
 		}
+        else {
+            alert('Error logging in. Check your credentials or create a new account.');
+        }
 	})
-	alert('Error logging in. Check your credentials or create a new account.');
-    //on success, advance to game
-    //on failure, update message box to say
-    //error logging in
-    //incorrect credentials
+    .catch(() => {
+        alert('Error with server. Please try again later or play as a guest.');
+    })
 }
 
 const attemptRegister = (e) => {
