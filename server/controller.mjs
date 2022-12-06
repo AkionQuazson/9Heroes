@@ -19,7 +19,8 @@ const allHeroes = [
 ]
 
 export const test = async () => {
-    return await db`SELECT * FROM profiles WHERE username = 'Akion';`
+    const apple = await db`SELECT * FROM profiles WHERE username = 'Akion';`
+    return apple;
 }
 
 export const login = async (user) => {
@@ -63,6 +64,7 @@ export const getHeroes = async (user) => {
     return heroes;
 }
 export const saveStatus = async (input) => {
+    const {user, heroes, wave} = input;
     // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
     // const game = await db`SELECT * FROM gamestates WHERE player_id = ${profile.id}`;
     // if game, await db`DELETE * FROM gamestates WHERE player_id = ${profile.id}`;
