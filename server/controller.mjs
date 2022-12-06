@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////
+/////////////////     IMPORTANT NOTE     /////////////////
+//The server is currently not set up to allow dynamic queries
+//The problem was unable to be resolved of myself, and the 
+//server host, within the timeframe of this project. 
+//////////////////////////////////////////////////////////
+
 import bcryptjs from 'bcryptjs';
 import postgres from 'postgres';
 import * as fs from '/etc/node/SimpleFS.mjs';

@@ -56,7 +56,7 @@ const renderHeroes = () => {
 }
 
 const animate = () => {
-	requestAnimationFrame(animate)
+	const animationId = requestAnimationFrame(animate)
 	if (user === null) return;
     c.drawImage(map, 0, 0)
 	dom.fields.statsDisplay.innerHTML = `<p>Health: ${baseHealth}</p><p> Actions: ${actions}</p>`
@@ -193,7 +193,8 @@ const animate = () => {
 		}
 	}
 	if (baseHealth <= 0) {
-		
+		cancelAnimationFrame(animationId);
+		alert('Game over. Please refresh page to start again.');
 	}
 }
 
