@@ -22,7 +22,7 @@ const main = async () => {
   }
   
   if (route === '/login') {
-    process.stdout.write(JSON.stringify(await login(input)));
+    process.stdout.write(JSON.stringify//(await login(input)));
   }
   
   if (route === '/register') {
@@ -39,4 +39,4 @@ const main = async () => {
   
 }
 
-await In(async (userInput) => {input = userInput; await main();})
+await In(async (userInput) => {input = userInput; await main();},{allowGet: false})
