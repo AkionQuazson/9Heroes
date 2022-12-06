@@ -3,11 +3,6 @@ import axios from "axios";
 let user;
 let heroes = [];
 
-axios.post('https://homelightarchive.com/games/9Heroes/server/?/test')
-.then((res) => {
-    console.log(res.data)
-})
-
 const loginStipulation = () => {
     if (dom.inputs.username.value.length < 3) {
         return false;
@@ -151,4 +146,7 @@ dom.inputs.switchToRegister.addEventListener('click', switchLoginOrRegister);
 dom.inputs.guest.addEventListener('click', startGuest);
 dom.screens.login.addEventListener('submit', attemptLogin);
 
-
+axios.post('https://homelightarchive.com/games/9Heroes/server/?/test')
+.then((res) => {
+    console.log(res.data)
+})
