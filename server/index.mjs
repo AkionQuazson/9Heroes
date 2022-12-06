@@ -2,6 +2,7 @@
 
 import In from '/etc/node/In.mjs';
 import { 
+  test,
   login, 
   register, 
   getHeroes, 
@@ -15,6 +16,10 @@ const route = process.env.QUERY_STRING || process.argv[2];
 
 let input = {};
 const main = async () => {
+  if (route === '/test') {
+    console.log(await test())
+  }
+  
   if (route === '/login') {
     console.log(JSON.stringify(await login(input)));
   }

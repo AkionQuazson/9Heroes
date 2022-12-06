@@ -18,6 +18,10 @@ const allHeroes = [
 {type:'Spellblade', img:'img/heroes/spellblade.png', range:1, damage:3, luck:25, experience:0}
 ]
 
+export const test = async () => {
+    return await db`SELECT * FROM profiles;`
+}
+
 export const login = async (user) => {
     const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
 	if (profile.length === 0) {
