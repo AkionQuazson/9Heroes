@@ -16,12 +16,13 @@ const route = process.env.QUERY_STRING || process.argv[2];
 
 let input = {};
 const main = async () => {
+  console.log(input);
   if (route === '/test') {
     console.log(await test())
   }
   
   if (route === '/login') {
-    console.log(JSON.stringify(await login(input)));
+    process.stdout.write(JSON.stringify(await login(input)));
   }
   
   if (route === '/register') {
