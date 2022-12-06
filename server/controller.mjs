@@ -1,5 +1,7 @@
+import bcryptjs from 'bcryptjs';
 import postgres from 'postgres';
 const db = postgres({database: 'spencer'});
+const salt = bcryptjs.genSaltSync(10);
 
 const allHeroes = [
 {type:'Archer', img:'img/heroes/archer.png', range:3, damage:2, luck:0, experience:0},
@@ -18,7 +20,7 @@ const allHeroes = [
 
 export const login = async (user) => {
     const profile = await db`SELECT * FROM profiles WHERE username = ${user.username}`;
-	
+	return profile;
 	if (profile.length === 0) {
         return {dne: true}
     }
