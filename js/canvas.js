@@ -226,11 +226,9 @@ canvas.addEventListener('click', (e) => {
 		selectedHero.position = selectedTile.position;
 		selectedTile.occupied = true;
 		selectedHero = null;
-		renderHeroes();
 	}
 	else if (selectedTile === null) {
 		selectedHero = null;
-		renderHeroes();
 	}
 	else if (selectedTile.occupied && selectedHero === null || typeof(selectedHero) === 'string') {
 		for (let i = 0; i < heroes.length; i++) {
@@ -256,7 +254,7 @@ canvas.addEventListener('click', (e) => {
 		}
 		selectedHero = null;
 	}
-	
+	renderHeroes();
 })
 
 dom.inputs.endTurn.addEventListener('click', (e) => {
