@@ -28,7 +28,7 @@ const attemptLogin = (e) => {
 		username: dom.inputs.username.value,
 		password: dom.inputs.password.value
 	}
-	axios.post('https://homelightarchive.com/games/9Heroes/server/?/login', `username=${data.username}&password=${data.password}`)
+	axios.post(`https://homelightarchive.com/games/9Heroes/server/?route=login&username=${data.username}&password=${data.password}`)
 	.then((res) => {
 		console.log(res);
         if (!res.data.dne) {
@@ -52,10 +52,11 @@ const attemptRegister = (e) => {
 	}
 
 	const data = {
+		route: 'register',
 		username: dom.inputs.username.value,
 		password: dom.inputs.password.value
 	}
-	axios.post('https://homelightarchive.com/games/9Heroes/server/?/register', data)
+	axios.post('https://homelightarchive.com/games/9Heroes/server/', data)
 	.then((res) => {
 		if (res.data.dne) {
 			user = data.username;
@@ -96,7 +97,7 @@ const switchLoginOrRegister = (e) => {
 }
 
 const getHeroes = () => {
-    axios.post('https://homelightarchive.com/games/9Heroes/server/?/heroes', {user: user})
+    axios.post(`https://homelightarchive.com/games/9Heroes/server/?route=heroes&user=${user}`)
         .then((res) => {
             heroes = res.data;
             
@@ -129,7 +130,7 @@ const getHeroes = () => {
 const saveData = (data) => {
     //post data to server
 	const gamestate = json.stringify(data);
-	axios.post('https://homelightarchive.com/games/9Heroes/server/?/save', {user: user, gamestate: gamestate})
+	axios.post('https://homelightarchive.com/games/9Heroes/server/', {route: 'save', user: user, gamestate: gamestate})
 }
 
 const runGame = () => {

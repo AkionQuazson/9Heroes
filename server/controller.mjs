@@ -24,7 +24,7 @@ const allHeroes = [
 {type:'Pyromancer', img:'img/heroes/pyromancer.png', range:2, damage:2, luck:5, experience:0},
 {type:'Rogue', img:'img/heroes/rogue.png', range:1, damage:1, luck:20, experience:0},
 {type:'Spellblade', img:'img/heroes/spellblade.png', range:1, damage:3, luck:25, experience:0}
-]
+];
 
 export const test = async () => {
     const profile = await db`SELECT * FROM profiles WHERE username = 'Akion'`;
@@ -55,16 +55,18 @@ export const register = async (user) => {
         return newUser;
     }
 }
-export const getHeroes = async (user) => {
+export const getHeroes = async (input) => {
     let heroes = [];
     //if logged in, and has previous game
     
-    // const profile = await db`SELECT * FROM profiles WHERE username = ${user.username};`;
+    // const profile = await db`SELECT * FROM profiles WHERE username = ${input.user.username};`;
     // const game = await db`SELECT * FROM games WHERE player_id = ${profile.id};`;
     // if game, load game.heroes, else run \/
+    let failSafe = 0;
     while (heroes.length < 9) {
         const rand = Math.floor(Math.random() * allHeroes.length);
         heroes.push(...allHeroes.splice(rand, 1));
+        if (++failSafe > 50) break;
     }
 
     //return selected heroes
